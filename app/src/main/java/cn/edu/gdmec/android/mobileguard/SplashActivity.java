@@ -3,7 +3,7 @@ package cn.edu.gdmec.android.mobileguard;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainSplash extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
