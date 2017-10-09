@@ -110,7 +110,7 @@ public class VersionUpdateUtils {
                 downloadNewApk(versionEntity.apkurl);
             }
         });
-        builder.setPositiveButton("暂不升级",new DialogInterface.OnClickListener(){
+        builder.setNegativeButton("暂不升级",new DialogInterface.OnClickListener(){
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
