@@ -8,7 +8,7 @@ import cn.edu.gdmec.android.mobileguard.m1home.utils.MyUtils;
 import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 
 public class SplashActivity extends AppCompatActivity {
-    private TextView mTextView;
+    private TextView mTvVersion;
     private String mVersion;
 
     @Override
@@ -16,8 +16,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         mVersion = MyUtils.getVersion(getApplicationContext());
-        mTextView = (TextView) findViewById(R.id.tv_splash_version);
-        mTextView.setText("版本号:"+mTextView);
+        mTvVersion = (TextView) findViewById(R.id.tv_splash_version);
+        mTvVersion.setText("版本号:"+mVersion);
         final VersionUpdateUtils versionUpdateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this);
         new Thread(){
             @Override
