@@ -6,24 +6,29 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
 
 public class HomeActivity extends AppCompatActivity {
+    private GridView gv_home;
+    private long mExitTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().hide();
+        gv_home = (GridView) findViewById(R.id.gv_home);
+        gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
+        gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemClick(AdapterView<?>adapterView,View view,int i,long l){
+                switch (i){
+
+                }
             }
         });
     }
