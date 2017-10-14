@@ -104,14 +104,12 @@ public class VersionUpdateUtils {
         builder.setCancelable(false);
         builder.setIcon(R.mipmap.ic_launcher_round);
         builder.setPositiveButton("立即升级",new DialogInterface.OnClickListener(){
-
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 downloadNewApk(versionEntity.apkurl);
             }
         });
         builder.setNegativeButton("暂不升级",new DialogInterface.OnClickListener(){
-
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -126,6 +124,6 @@ public class VersionUpdateUtils {
 
     private void downloadNewApk(String apkurl){
         DownloadUtils downloadUtils = new DownloadUtils();
-        downloadUtils.downloadApk(versionEntity.apkurl,"mobileguard.apk",context);
+        downloadUtils.downloadApk(apkurl,"mobileguard.apk",context);
     }
 }
