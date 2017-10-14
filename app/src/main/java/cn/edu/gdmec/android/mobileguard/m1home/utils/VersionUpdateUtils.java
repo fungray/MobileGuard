@@ -59,9 +59,6 @@ public class VersionUpdateUtils {
                     break;
             }
         }
-
-
-
     };
 
     public VersionUpdateUtils(String mVersion,Activity context){
