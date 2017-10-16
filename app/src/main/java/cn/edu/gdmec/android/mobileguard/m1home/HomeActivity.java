@@ -1,25 +1,22 @@
 package cn.edu.gdmec.android.mobileguard.m1home;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+        import android.content.Intent;
+        import android.content.SharedPreferences;
+        import android.os.Bundle;
 
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.Toast;
+        import android.support.v7.app.AppCompatActivity;
+        import android.text.TextUtils;
+        import android.view.KeyEvent;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.GridView;
+        import android.widget.Toast;
 
-import cn.edu.gdmec.android.mobileguard.R;
-import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
+        import cn.edu.gdmec.android.mobileguard.R;
+        import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
+        import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
+        import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
+        import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
@@ -102,6 +99,8 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+        setUpPasswordDialog.setCancelable(true);
+        setUpPasswordDialog.show();
     }
     //弹出输入密码对话框，本方法需要完成“手机防盗模块”之后才能启用
     private void showInterPswdDialog() {
