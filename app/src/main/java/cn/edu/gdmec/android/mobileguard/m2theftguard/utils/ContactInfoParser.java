@@ -20,7 +20,7 @@ public class ContactInfoParser {
         //获取内容解析者
         ContentResolver resolver = context.getContentResolver();
         //1.查询raw_contact表，把联系人的id取出来
-        Uri uri = Uri.parse("content://com.android.contacts/taw_contacts");
+        Uri uri = Uri.parse("content://com.android.contacts/raw_contacts");
         Uri datauri = Uri.parse("content://com.android.contacts/data");
         List<ContactInfo> infos = new ArrayList<ContactInfo>();
         Cursor cursor = resolver.query(uri,new String[] {"contact_id"},null,null,null);
@@ -30,7 +30,7 @@ public class ContactInfoParser {
                 System.out.println("联系人id"+id);
                 ContactInfo info = new ContactInfo();
                 info.id=id;
-                Cursor dataCursor = resolver.query(datauri,new String[]{"data1","mimetypr"},"raw_contact_id=?",new String[]{id},null);
+                Cursor dataCursor = resolver.query(datauri,new String[]{"data1","mimetype"},"raw_contact_id=?",new String[]{id},null);
                 while (dataCursor.moveToNext()){
                     String data1 = dataCursor.getString(0);
                     String mimetype = dataCursor.getString(1);
