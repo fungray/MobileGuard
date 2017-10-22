@@ -63,13 +63,13 @@ public class Setup2Activity extends BaseSetUpActivity implements View.OnClickLis
         switch (view.getId()){
             case R.id.btn_bind_sim:
                 //绑定SIM卡
-                bingSIM();
+                bindSIM();
                 break;
         }
     }
 
     //绑定SIM卡
-    private void bingSIM(){
+    private void bindSIM(){
         if(!isBind()){
             //使用电话管理器服务来获取sim卡号
             String simSerialNumber = mTelephonyManager.getSimSerialNumber();
