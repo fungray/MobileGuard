@@ -20,7 +20,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 public class LostFindActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mSafePhoneTV;
     private RelativeLayout mInterSetupRL;
-    private SharedPreferences mSharedPreferences;
+    private SharedPreferences msharedPreferences;
     private ToggleButton mToggleButton;
     private TextView mProtectStatusTV;
 
@@ -28,13 +28,14 @@ public class LostFindActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_lost_find);
+        msharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
         if(!isSetUp()){
             startSetUp1Activity();
         }
         initView();
     }
     private boolean isSetUp(){
-        return mSharedPreferences.getBoolean("isSetUp",false);
+        return msharedPreferences.getBoolean("isSetUp",false);
     }
 
     //初始化控件
@@ -46,13 +47,13 @@ public class LostFindActivity extends AppCompatActivity implements View.OnClickL
         mLeftImgv.setImageResource(R.drawable.back);
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.purple));
         mSafePhoneTV = (TextView)findViewById(R.id.tv_safephone);
-        mSafePhoneTV.setText(mSharedPreferences.getString("safephone",""));
+        mSafePhoneTV.setText(msharedPreferences.getString("safephone",""));
         mToggleButton = (ToggleButton)findViewById(R.id.togglebtn_lostfind);
         mInterSetupRL = (RelativeLayout)findViewById(R.id.rl_inter_setup_wizard);
         mInterSetupRL.setOnClickListener(this);
         mProtectStatusTV = (TextView)findViewById(R.id.tv_lostfind_protectstauts);
         //查询手机防盗是否开启，默认为开启
-        boolean protecting = mSharedPreferences.getBoolean("protecting",true);
+        boolean protecting = msharedPreferences.getBoolean("protecting",true);
         if(protecting){
             mProtectStatusTV.setText("防盗保护已经开启");
             mToggleButton.setChecked(true);
@@ -68,7 +69,7 @@ public class LostFindActivity extends AppCompatActivity implements View.OnClickL
                 }else{
                     mProtectStatusTV.setText("防盗保护没有开启");
                 }
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                SharedPreferences.Editor editor = msharedPreferences.edit();
                 editor.putBoolean("protecting",isChecked);
                 editor.commit();
             }
