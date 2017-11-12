@@ -60,7 +60,7 @@
             android:drawableTop="@drawable/deleteicon_yellow_n"
             android:text="卸载"/>
         <View
-            android:layout_width="1px"
+            android:layout_width="2px"
             android:layout_height="match_parent"
             android:background="@color/black30"/>
         <TextView
