@@ -81,7 +81,7 @@ public class AppInfoParser {
                 e.printStackTrace();
             }
 
-            //获取app活动
+            //获取app活动//
 
             PackageInfo packactivityes = null;
             try {
