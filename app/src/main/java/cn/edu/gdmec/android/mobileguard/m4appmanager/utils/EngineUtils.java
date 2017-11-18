@@ -82,6 +82,22 @@ public class EngineUtils {
                     });
         AlertDialog dialog =  builder.create();
         dialog.show();
+    }
 
+    //软件活动
+    public static void activityApplication(Context context,AppInfo appInfo){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(appInfo.appName);
+        builder.setMessage("Activities:"+appInfo.appActivity);
+
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                arg0.dismiss();
+            }
+        });
+        AlertDialog dialog =  builder.create();
+        dialog.show();
     }
 }

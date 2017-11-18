@@ -31,6 +31,8 @@ public class AppInfo {
     public String appPermissions;
     //应用程序的签名
     public String appSignatures;
+    //应用程序的活动
+    public String appActivity;
 
     //拿到App位置字符串
     public String getAppLocation(boolean isInRoom){

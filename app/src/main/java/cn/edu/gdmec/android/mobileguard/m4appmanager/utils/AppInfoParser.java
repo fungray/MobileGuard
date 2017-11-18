@@ -1,6 +1,7 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager.utils;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
@@ -76,6 +78,23 @@ public class AppInfoParser {
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             } catch (CertificateException e) {
+                e.printStackTrace();
+            }
+
+            //获取app活动//
+
+            PackageInfo packactivityes = null;
+            try {
+                packactivityes = pm.getPackageInfo(packname, PackageManager.GET_ACTIVITIES);
+
+
+                ActivityInfo[] a = packactivityes.activities;
+                    if (a != null) {
+                        for (ActivityInfo activityInfo : a){
+                        appinfo.appActivity = appinfo.appActivity + activityInfo.name + "\n";
+                    }
+                }
+            } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
 
