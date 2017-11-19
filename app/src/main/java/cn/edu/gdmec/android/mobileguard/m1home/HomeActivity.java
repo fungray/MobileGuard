@@ -67,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 3:
                         startActivity(VirusScanActivity.class);
+                        break;
                 }
             }
         });
