@@ -171,7 +171,7 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
                 if(cacheMemory > 0){
                     //跳转至清理缓存的页面的Activity
                     Intent intent = new Intent(this,CleanCacheActivity.class);
-                    //将要清理的垃圾大小传递至另一个页面
+                    //将要清理的垃圾大小传递至另一个页面.
                     intent.putExtra("cacheMemory",cacheMemory);
                     startActivity(intent);
                     finish();
