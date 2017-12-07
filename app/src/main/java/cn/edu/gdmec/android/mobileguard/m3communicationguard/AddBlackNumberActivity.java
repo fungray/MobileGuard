@@ -16,6 +16,10 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.ContactSelectActivity;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContactInfo;
 
+/**
+ * Created by 123 on 2017/11/5.
+ */
+
 public class AddBlackNumberActivity extends AppCompatActivity implements View.OnClickListener{
     private CheckBox mSmsCB;
     private CheckBox mTelCB;
@@ -23,47 +27,47 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
     private EditText mNameET;
     private EditText mTypeET;
     private BlackNumberDao dao;
+
     private void initView(){
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_purple));
-        ((TextView)findViewById(R.id.tv_title)).setText("添加黑名单");
-        ImageView mLeftImagv = (ImageView) findViewById(R.id.imgv_leftbtn);
-        mLeftImagv.setOnClickListener(this);
-        mLeftImagv.setImageResource(R.drawable.back);
+        ((TextView) findViewById(R.id.tv_title)).setText("添加黑名单");
+        ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
+        mLeftImgv.setOnClickListener(this);
+        mLeftImgv.setImageResource(R.drawable.back);
 
         mSmsCB = (CheckBox) findViewById(R.id.cb_blacknumber_sms);
         mTelCB = (CheckBox) findViewById(R.id.cb_blacknumber_tel);
         mNumET = (EditText) findViewById(R.id.et_blacknumber);
         mNameET = (EditText) findViewById(R.id.et_blackname);
         mTypeET = (EditText) findViewById(R.id.et_blacktype);
-
         findViewById(R.id.add_blacknum_btn).setOnClickListener(this);
         findViewById(R.id.add_fromcontact_btn).setOnClickListener(this);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data != null){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(data!=null){
             //获取选中的联系人信息
             String phone = data.getStringExtra("phone");
             String name = data.getStringExtra("name");
+            String type = data.getStringExtra("types");
             mNameET.setText(name);
             mNumET.setText(phone);
-            mTypeET.setText("骚扰");
+            mTypeET.setText(type);
         }
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_black_number);
         dao = new BlackNumberDao(AddBlackNumberActivity.this);
         initView();
     }
-
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
+    public void onClick(View view) {
+        switch (view.getId()){
             case R.id.imgv_leftbtn:
                 finish();
                 break;
@@ -71,41 +75,41 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
                 String number = mNumET.getText().toString().trim();
                 String name = mNameET.getText().toString().trim();
                 String type = mTypeET.getText().toString().trim();
-                if (TextUtils.isEmpty(number)||TextUtils.isEmpty(name)||TextUtils.isEmpty(type)){
-                    Toast.makeText(this, "电话号码和手机号码和类型不能为空！", Toast.LENGTH_LONG).show();
+                if(TextUtils.isEmpty(number) || TextUtils.isEmpty(name)){
+                    Toast.makeText(this,"电话号码和手机号不能为空！",Toast.LENGTH_LONG).show();
                     return;
                 }else {
-                    //电话号码和名称都不为空
+                    //电话号码和名称不能为空
                     BlackContactInfo blackContactInfo = new BlackContactInfo();
                     blackContactInfo.phoneNumber = number;
                     blackContactInfo.contactName = name;
-                    blackContactInfo.type = type;
-                    if (mSmsCB.isChecked() & mTelCB.isChecked()){
-                        //两种模式都选
-                        blackContactInfo.mode=3;
-                    }else if (mSmsCB.isChecked() & !mTelCB.isChecked()){
+                    blackContactInfo.types = type;
+                    if(mSmsCB.isChecked() & mTelCB.isChecked()){
+                        //两种拦截方式都选
+                        blackContactInfo.mode = 3;
+                    }else if(mSmsCB.isChecked() & !mTelCB.isChecked()){
                         //短信拦截
-                        blackContactInfo.mode =2;
-
-                    }else if (!mSmsCB.isChecked() & mTelCB.isChecked()){
+                        blackContactInfo.mode = 2;
+                    }else if(!mSmsCB.isChecked() & mTelCB.isChecked()){
                         //电话拦截
-                        blackContactInfo.mode =1;
-                    }else {
-                        Toast.makeText(this, "请选择拦截模式", Toast.LENGTH_SHORT).show();
+                        blackContactInfo.mode = 1;
+                    }else{
+                        Toast.makeText(this,"请选择拦截方式！",Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if (!dao.IsNumberExist(blackContactInfo.phoneNumber)){
+
+                    if(!dao.IsNumberExist(blackContactInfo.phoneNumber)){
                         dao.add(blackContactInfo);
-                    }else {
-                        Toast.makeText(this, "该号码已经被添加至黑名单", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(this,"该号码已经被添加至黑名单",Toast.LENGTH_LONG).show();
                     }
                     finish();
-                    
                 }
                 break;
             case R.id.add_fromcontact_btn:
                 startActivityForResult(new Intent(this, ContactSelectActivity.class),0);
                 break;
         }
+
     }
 }

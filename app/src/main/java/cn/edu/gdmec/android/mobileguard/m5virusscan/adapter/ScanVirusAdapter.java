@@ -13,15 +13,15 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.entity.ScanAppInfo;
 
 /**
- * Created by Administrator on 2017/11/16.
+ * Created by 84506 on 2017/11/19.
  */
 
 public class ScanVirusAdapter extends BaseAdapter {
     private List<ScanAppInfo> mScanAppInfos;
     private Context context;
-    public ScanVirusAdapter(List<ScanAppInfo> scanAppInfos,Context context){
+    public ScanVirusAdapter(List<ScanAppInfo> scanAppInfo,Context context){
         super();
-        mScanAppInfos = scanAppInfos;
+        mScanAppInfos = scanAppInfo;
         this.context = context;
     }
     static class ViewHolder{
@@ -35,19 +35,19 @@ public class ScanVirusAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return mScanAppInfos.get(position);
+    public Object getItem(int i) {
+        return mScanAppInfos.get(i);
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public long getItemId(int i) {
+        return i;
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        if (view == null){
+        if(view == null){
             view = View.inflate(context, R.layout.item_list_applock,null);
             holder = new ViewHolder();
             holder.mAppIconImgv = (ImageView) view.findViewById(R.id.imgv_appicon);
@@ -57,17 +57,16 @@ public class ScanVirusAdapter extends BaseAdapter {
         }else{
             holder = (ViewHolder) view.getTag();
         }
-        ScanAppInfo scanAppinfo = mScanAppInfos.get(position);
-        if (!scanAppinfo.isVirus){
-            holder.mScanIconImgv.setImageResource(R.drawable.blue_right_icon);
+        ScanAppInfo scanAppInfo = mScanAppInfos.get(i);
+        if (!scanAppInfo.isVirus){
+            holder.mScanIconImgv.setBackgroundResource(R.drawable.blue_right_icon);
             holder.mAppNameTV.setTextColor(context.getResources().getColor(R.color.black));
-            holder.mAppNameTV.setText(scanAppinfo.appName);
-
-        }else {
+            holder.mAppNameTV.setText(scanAppInfo.appName);
+        }else{
             holder.mAppNameTV.setTextColor(context.getResources().getColor(R.color.bright_red));
-            holder.mAppNameTV.setText(scanAppinfo.appName+"("+scanAppinfo.description+")");
+            holder.mAppNameTV.setText(scanAppInfo.appName+"("+scanAppInfo.description+")");
         }
-        holder.mAppIconImgv.setImageDrawable(scanAppinfo.appicon);
+        holder.mAppIconImgv.setImageDrawable(scanAppInfo.appicon);
         return view;
     }
 }
