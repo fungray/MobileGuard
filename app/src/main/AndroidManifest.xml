@@ -100,6 +100,9 @@
 
         <activity android:name=".m8trafficmonitor.OperatorSetActivity"/>
         <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity"/>
+
+        <activity android:name=".m9Advancedtools.AdvancedToolsActivity"/>
+        <activity android:name=".m9Advancedtools.NumBelongtoActivity"/>
     </application>
 
 </manifest>
