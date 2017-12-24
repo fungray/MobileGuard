@@ -20,7 +20,7 @@ import cn.edu.gdmec.android.mobileguard.m9Advancedtools.db.AppLockOpenHelper;
 public class AppLockDao {
     private Context context;
     private AppLockOpenHelper openHelper;
-    //private Uri uri = Uri.parse(App.APPLOCK_CONTENT_URI);
+    private Uri uri = Uri.parse(App.APPLOCK_CONTENT_URI);
 
     public AppLockDao(Context context){
         this.context =context;

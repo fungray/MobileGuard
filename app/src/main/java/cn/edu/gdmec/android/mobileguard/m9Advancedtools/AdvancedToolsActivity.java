@@ -47,6 +47,10 @@ public class AdvancedToolsActivity extends AppCompatActivity implements View.OnC
             case R.id.imgv_leftbtn:
                 finish();
                 break;
+            case R.id.advanceview_applock:
+                //进入程序锁页面
+                startActivity(AppLockActivity.class);
+                break;
             case R.id.advanceview_numbelongs:
                 //进入归属地查询页面
                 startActivity(NumBelongtoActivity.class);
