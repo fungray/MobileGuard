@@ -1,9 +1,14 @@
 package cn.edu.gdmec.android.mobileguard.m1home.utils;
 
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.webkit.MimeTypeMap;
+
+import java.io.File;
 
 /**
  * Created by 84506 on 2017/9/26.
@@ -23,5 +28,14 @@ public class DownloadUtils {
         request.setDestinationInExternalPublicDir("/download",targetFile);
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         long mTaskid = downloadManager.enqueue(request);
+    }
+
+    public static void installApk (Activity activity, String apkFile){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setDataAndType(Uri.fromFile(
+                new File(Environment.getExternalStoragePublicDirectory("/download/").getPath()+"/"+apkFile)),
+                "application/vnd.android.package-archive");
+        activity.startActivityForResult(intent,0);
     }
 }
