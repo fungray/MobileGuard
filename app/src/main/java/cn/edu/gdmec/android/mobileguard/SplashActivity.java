@@ -32,9 +32,26 @@ public class SplashActivity extends AppCompatActivity {
             );
         }
 
-        startActivity(new Intent(this, HomeActivity.class));
-        finish();
+
+        //更新apk
+        VersionUpdateUtils.DownloadCallback downloadCallback = new VersionUpdateUtils.DownloadCallback() {
+            @Override
+            public void afterDownload(String filename) {
+                MyUtils.installApk(SplashActivity.this,filename);
+            }
+        };
+        final VersionUpdateUtils versionUpdateUtils=new VersionUpdateUtils(mVersion,SplashActivity.this,downloadCallback,HomeActivity.class);
+
+        new Thread(){
+            @Override
+            public void run(){
+                super.run();
+                versionUpdateUtils.getCloudVersion("http://android2017.duapp.com/updateinfo.html");
+            }
+        }.start();
     }
+
+
     private boolean hasPermission(){
         AppOpsManager appOps = (AppOpsManager)
                 getSystemService ( APP_OPS_SERVICE );
