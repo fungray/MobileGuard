@@ -14,7 +14,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 
 public abstract class BaseSetUpActivity extends AppCompatActivity {
     public SharedPreferences sp;
-    //手势识别类//
+    //手势识别类
     private GestureDetector mGestureDetector;
     //抽象方法 显示前一屏的activity
     public abstract void showNext();
